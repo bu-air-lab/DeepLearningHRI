@@ -50,12 +50,17 @@ otheta=data[1:,1:]        #Intentionaly remove first row to aalign it with vecto
 allnan=isnan(otheta)
 otheta[allnan]=0
 #mtheta= preprocessing.scale(mtheta)
-a=np.array([[1,2,3],[4,5,6],[7,8,9]])
+a=np.array([[-1,2,3],[4,0,0],[7,8,9]])
 
+# This function works well if only we have negative and positive values in the array
 def custscale(array,down,up):
 
 	print np.amin(array)
 	print np.amax(array)
-	output=(up-np.amax(array))/(down-)		
-
-	return None
+	output=((up-down)/(np.amax(array)-np.amin(array)))*(array-np.amin(array))+down		
+        for x in range(array.shape[0]):
+		for y in range(array.shape[1]):
+			if array[x,y]==0:
+				output[x,y]=0
+			
+	return output
